@@ -8,7 +8,10 @@
       `https://en.wikipedia.org/api/rest_v1/page/summary/${animal}`,
     );
     const data = await response.json();
-    return { extract: data.extract, image: data.thumbnail ? data.thumbnail.source : '' };
+    return {
+      extract: data.extract,
+      image: data.thumbnail ? data.thumbnail.source : "",
+    };
   }
 </script>
 
@@ -24,4 +27,11 @@
 <p>{excerpt}</p>
 {#if imageUrl}
   <img src={imageUrl} alt={animalName} />
+{/if}
+{#if excerpt}
+  <p>
+    <a href={`https://en.wikipedia.org/wiki/${animalName}`} target="_blank"
+      >Read more on Wikipedia</a
+    >
+  </p>
 {/if}
